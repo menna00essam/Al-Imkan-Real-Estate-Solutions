@@ -1178,7 +1178,7 @@ body:has(.offcanvas){
     width: calc(100% - 30px);
 }
 .hero.bg-image{
-	background: url('../images/hero-bg.jpg') no-repeat;
+	background: url('../images/hero-bg.webp') no-repeat;
 	background-position: center center;
 	background-size: cover;
 	padding: 272px 0 170px;
@@ -1195,7 +1195,7 @@ body:has(.offcanvas){
 
 .hero.hero-slider-layout .hero-slide{
 	position: relative;
-	background: url('../images/hero-bg.jpg');
+	background: url('../images/hero-bg.webp');
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
@@ -1203,7 +1203,7 @@ body:has(.offcanvas){
 }
 
 .hero.hero-slider-layout .hero-slide.slide-2{
-	background: url('../images/hero-bg-2.jpg');
+	background: url('../images/hero-bg-2.webp');
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
@@ -2800,7 +2800,7 @@ body:has(.offcanvas){
 /************************************/
 .page-header{
     position: relative;
-	background: url(../images/page-header-bg.jpg);
+	background: url(../images/page-header-bg.webp);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -7035,6 +7035,20 @@ body:has(.offcanvas){
         .map-link:hover {
             color: #c5a557 !important;
         }
+		.google-map-embed {
+    position: relative;
+    padding-bottom: 75%; 
+    height: 0;
+    overflow: hidden;
+}
+
+.google-map-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
 
         @media (max-width: 768px) {
             .help-page {

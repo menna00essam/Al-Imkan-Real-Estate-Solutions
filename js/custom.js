@@ -29,8 +29,10 @@ form.addEventListener('submit', e => {
   const formData = new FormData(form);
   const formParams = new URLSearchParams();
 
+  // Log form data for debugging
   for (const pair of formData.entries()) {
     formParams.append(pair[0], pair[1]);
+    console.log(pair); // Log each form entry
   }
 
   fetch(scriptURL, {
@@ -54,7 +56,7 @@ form.addEventListener('submit', e => {
     }, 3000);
   })
   .catch(error => {
-    console.error('Error!', error.message);
+    console.error('Error details:', error); // Print error details to console
     errorMessage.style.display = 'block'; // Show error message
   });
 });

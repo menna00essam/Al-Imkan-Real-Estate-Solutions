@@ -578,38 +578,44 @@ snaptr('track', 'PAGE_VIEW');
                 <div class="col-lg-12">
                     <!-- Contact Form Start -->
                     <div class="contact-form">
-                        <form action="" method="POST" name="contact-form" class="wow ">
-                            <div class="row">
-                                <div class="form-group col-md-6 mb-4">
-                                    <input type="text" name="Name" class="form-control" id="fname"
-                                        placeholder="الاسم كاملاً " required>
-                                    <div class="help-block with-errors"></div>
-                                </div>
+    <form action="#" method="POST" name="contact-form" class="wow">
+        <div class="row">
+            <div class="form-group col-md-6 mb-4">
+                <input type="text" name="Name" class="form-control" id="fname"
+                    placeholder="الاسم كاملاً" required>
+                <div class="help-block with-errors"></div>
+            </div>
 
-                                <div class="form-group col-md-6 mb-4">
-                                    <input type="number" name="Phone" class="form-control" id="phone"
-                                        placeholder="رقم الهاتف" pattern="05[0-9]{8}" maxlength="10" required>
-                                    <div class="help-block with-errors" id="phone-error"></div>
-                                </div>
-                                <div class="form-group col-md-6 mb-4">
-                                    <input type="text" name="Work-Destination" class="form-control" id="lname"
-                                        placeholder=" جهه العمل" required>
-                                    <div class="help-block with-errors: "></div>
-                                </div>
+            <div class="form-group col-md-6 mb-4">
+                <input type="number" name="Phone" class="form-control" id="phone"
+                    placeholder="رقم الهاتف" pattern="05[0-9]{8}" maxlength="10" required>
+                <div class="help-block with-errors" id="phone-error"></div>
+            </div>
 
+            <div class="form-group col-md-6 mb-4">
+                <input type="text" name="Work-Destination" class="form-control" id="lname"
+                    placeholder="جهة العمل" required>
+                <div class="help-block with-errors: "></div>
+            </div>
 
-                                <div class="form-group col-md-12 mb-5">
-                                    <textarea name="Message" class="form-control" id="Message" rows="4"
-                                        placeholder="اكتب استفسارك هنا..."></textarea>
-                                </div>
+            <div class="form-group col-md-12 mb-5">
+                <textarea name="Message" class="form-control" id="Message" rows="4"
+                    placeholder="اكتب استفسارك هنا..."></textarea>
+            </div>
 
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn-default sub"><span>أرسل طلب</span></button>
-                                </div>
-                            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn-default sub"><span>أرسل طلب</span></button>
+            </div>
+        </div>
+    </form>
+</div>
 
-                        </form>
-                    </div>
+<!-- Success Alert -->
+<div id="success-alert" style="display: none; background-color: green; color: white; padding: 10px; text-align: center;">
+    <p>تم إرسال الرسالة بنجاح!</p>
+    <button id="close-alert" style="background-color: red; color: white; padding: 5px 10px; border: none;">إغلاق</button>
+</div>
+
                     <!-- Contact Form End -->
                 </div>
             </div>
@@ -951,34 +957,24 @@ snaptr('track', 'PAGE_VIEW');
     </footer>
     <!-- Footer End -->
     <!-- Jquery Library File -->
-    <script src="js/custom.js"></script>
     <script src="js/jquery-3.7.1.min.js"></script>
-    <script src="js/validator.min.js"></script>
-    <!-- SlickNav js file -->
-    <script src="js/jquery.slicknav.js"></script>
-    <!-- Swiper js file -->
-    <script src="js/swiper-bundle.min.js"></script>
-    <!-- Counter js file -->
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <!-- Isotop js file -->
-    <script src="js/isotope.min.js"></script>
-    <!-- Magnific js file -->
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <!-- SmoothScroll -->
-    <script src="js/SmoothScroll.js"></script>
-    <!-- Parallax js -->
-    <script src="js/parallax.js"></script>
-    <!-- MagicCursor js file -->
-    <script src="js/gsap.min.js"></script>
-    <!-- Text Effect js file -->
-    <script src="js/ScrollTrigger.min.js"></script>
-    <!-- YTPlayer js File -->
-    <script src="js/jquery.mb.YTPlayer.min.js"></script>
-    <!-- Wow js file -->
-    <script src="js/wow.min.js"></script>
-    <!-- Main Custom js file -->
-    <script src="js/function.js"></script>
+<script src="js/validator.min.js"></script>
+<script src="js/jquery.slicknav.js"></script>
+<script src="js/swiper-bundle.min.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.counterup.min.js"></script>
+<script src="js/isotope.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/SplitText.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/SmoothScroll.js"></script>
+<script src="js/parallax.js"></script>
+<script src="js/gsap.min.js"></script> 
+<script src="js/ScrollTrigger.min.js"></script>
+<script src="js/jquery.mb.YTPlayer.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/function.js"></script>
+
     <script>
 document.getElementById('phone').addEventListener('input', function (e) {
     let phone = e.target.value;

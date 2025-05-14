@@ -4222,7 +4222,7 @@ body:has(.offcanvas){
     left: 0;
     right: 0;
     bottom: 0;
-    background: url(../images/contact-info-bg-shape.svg) no-repeat;
+    background: url(../images/contact-info-bg-shape.webp) no-repeat;
 	background-position: top left;
 	background-size: auto;
     height: 0;
@@ -4292,7 +4292,7 @@ body:has(.offcanvas){
 
 .contact-form{
 	position: relative;
-	background: url('../images/contact-form-bg-shape.svg');
+	background: url('../images/contact-form-bg-shape.webp');
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;

@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
 const scriptURL = 'https://script.google.com/macros/s/AKfycbw554k9UH3CV_ZrUGivy_o6hkIwzR0V4XYykTsL8gEwqiEsBwEMm2dH-SQ_oh2mOA1H_A/exec';
 const form = document.forms['contact-form'];
 const successAlert = document.getElementById('success-alert');
-const closeAlertButton = document.getElementById('close-alert');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -51,9 +50,7 @@ form.addEventListener('submit', e => {
     });
 });
 
-closeAlertButton.addEventListener('click', () => {
-  successAlert.style.display = 'none';
-});
+
 
 document.getElementById('phone').addEventListener('input', function (e) {
         let phone = e.target.value;

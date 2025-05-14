@@ -578,7 +578,7 @@ snaptr('track', 'PAGE_VIEW');
                 <div class="col-lg-12">
                     <!-- Contact Form Start -->
                     <div class="contact-form">
-    <form  method="POST" name="contact-form" class="wow">
+    <form method="POST" name="contact-form" class="wow">
         <div class="row">
             <div class="form-group col-md-6 mb-4">
                 <input type="text" name="Name" class="form-control" id="fname"
@@ -595,7 +595,7 @@ snaptr('track', 'PAGE_VIEW');
             <div class="form-group col-md-6 mb-4">
                 <input type="text" name="Work-Destination" class="form-control" id="lname"
                     placeholder="جهة العمل" required>
-                <div class="help-block with-errors: "></div>
+                <div class="help-block with-errors"></div>
             </div>
 
             <div class="form-group col-md-12 mb-5">
@@ -615,6 +615,9 @@ snaptr('track', 'PAGE_VIEW');
     <p>تم إرسال الرسالة بنجاح!</p>
     <button id="close-alert" style="background-color: red; color: white; padding: 5px 10px; border: none;">إغلاق</button>
 </div>
+
+<p id="error-message" style="color: red; display: none;">حدث خطأ أثناء إرسال البيانات. يرجى المحاولة مرة أخرى.</p>
+
 
                     <!-- Contact Form End -->
                 </div>
@@ -977,7 +980,7 @@ snaptr('track', 'PAGE_VIEW');
 <script src="js/wow.min.js"></script>
 <script src="js/function.js"></script>
 
-    <script>
+    <!-- <script>
 document.getElementById('phone').addEventListener('input', function (e) {
     let phone = e.target.value;
     let errorDiv = document.getElementById('phone-error');
@@ -999,7 +1002,7 @@ document.getElementById('phone').addEventListener('input', function (e) {
         e.target.value = phone.slice(0, 10);
     }
 });
-    </script>
+    </script> -->
 </body>
 
 </html>

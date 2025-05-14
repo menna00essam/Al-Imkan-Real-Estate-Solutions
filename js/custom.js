@@ -16,36 +16,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-//https://script.google.com/macros/s/AKfycbw554k9UH3CV_ZrUGivy_o6hkIwzR0V4XYykTsL8gEwqiEsBwEMm2dH-SQ_oh2mOA1H_A/exec
-
-const scriptURL = 'https://script.google.com/macros/s/AKfycbw554k9UH3CV_ZrUGivy_o6hkIwzR0V4XYykTsL8gEwqiEsBwEMm2dH-SQ_oh2mOA1H_A/exec';
+//https://script.google.com/macros/s/AKfycbyX41kUmrn5l2sVbK318KdxvN0UwScTFv8Za4NbBvOEqfTGEwqN-56vhYkmXePFi7RIMQ/exec
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyX41kUmrn5l2sVbK318KdxvN0UwScTFv8Za4NbBvOEqfTGEwqN-56vhYkmXePFi7RIMQ/exec';
 const form = document.forms['contact-form'];
 const successAlert = document.getElementById('success-alert');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
 
-  // إرسال البيانات إلى Google Apps Script
-  fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+  const formData = new FormData(form);
+  const formParams = new URLSearchParams();
+
+  for (const pair of formData.entries()) {
+    formParams.append(pair[0], pair[1]);
+  }
+
+  fetch(scriptURL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: formParams
+  })
     .then(response => {
       if (!response.ok) {
         throw new Error('Failed to send data');
       }
-      return response.text(); // الحصول على النص الناتج من الاستجابة
+      return response.json(); // لو كودك بيرجع JSON
     })
     .then(result => {
-      // عند نجاح إرسال البيانات، عرض رسالة النجاح
       successAlert.style.display = 'flex';
       form.reset();
-
-      // إخفاء رسالة النجاح بعد 3 ثواني
       setTimeout(() => {
         successAlert.style.display = 'none';
       }, 3000);
     })
     .catch(error => {
       console.error('Error!', error.message);
-      // يمكنك إضافة رسالة خطأ هنا للمستخدم في حال فشل إرسال البيانات
       alert('حدث خطأ أثناء إرسال البيانات');
     });
 });

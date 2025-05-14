@@ -6858,59 +6858,103 @@ body:has(.offcanvas){
 }
 
 .policy-container {
-  margin: 90px ;    
-  padding: 40px; 
-  height: 400px;            
-}
-.policy-title{
-	text-align: center;
-}
-
-.policy-container p {
-  margin: 0 0 1em;           
-  line-height: 1.6;           
-  color: var(--text-color) !important;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 40px 30px;
+    background: rgba(16, 16, 16, 0.9);
+    border-radius: 15px;
+    border: 1px solid #2a2a2a;
 }
 
-.policy-container ul {
-  margin: 0 0 1em 1.5em;      
-  padding: 0;
-  list-style: none;
-  text-decoration: none;
-}
-.policy-container li {
-  margin: 0 0 0.5em;          
-  color: var(--text-color) !important;
+.policy-title {
+    color: #a5852e;
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    padding-bottom: 25px;
+    border-bottom: 2px solid #a5852e;
 }
 
-.policy-container h2 {
-  margin: 2em 0 0.5em;       
-  padding-bottom: 4px;
-  font-size: 1.3rem;
-  color: var(--accent-color);
-  border-bottom: 2px solid var(--divider-color);
-  display: inline-block;
+.policy-section {
+    margin-bottom: 35px;
+    padding: 25px;
+    background: rgba(26, 26, 26, 0.7);
+    border-radius: 12px;
+    border-left: 4px solid #a5852e;
 }
 
-.policy-container a {
-  color: var(--text-color) !important;
-  text-decoration: none;
-}
-.policy-container a:hover {
-  opacity: 0.8;
+.section-title {
+    color: #a5852e;
+    font-size: 22px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-@media (max-width: 600px) {
-  .policy-container {
-    margin: 60px auto 20px;
-    padding: 15px;
-  }
-  .policy-container h2 {
-    font-size: 1.1rem;
-  }
-  .policy-title{
-	margin-top: 25px;
-  }
+.section-title::before {
+    content: "•";
+    color: #a5852e;
+    font-size: 32px;
+    margin-left: 10px;
+}
+
+.section-text {
+    color: #d0d0d0;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.section-list {
+    padding-right: 25px;
+    list-style: none;
+    margin: 15px 0;
+}
+
+.section-list li {
+    color: #d0d0d0;
+    position: relative;
+    padding: 8px 0;
+    font-size: 16px;
+}
+
+.section-list li::before {
+    content: "•";
+    color: #a5852e;
+    position: absolute;
+    right: -20px;
+    font-size: 20px;
+}
+
+.policy-section a {
+    color: #a5852e;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.policy-section a:hover {
+    color: #c5a542;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .policy-container {
+        padding: 25px;
+        margin: 30px auto;
+    }
+    
+    .policy-section {
+        padding: 20px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
+    
+    .section-title::before {
+        font-size: 28px;
+    }
 }
 
     .help-page {

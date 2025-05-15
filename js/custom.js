@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 //https://script.google.com/macros/s/AKfycbwioJBkUr25IZDZzMPpNuf_e-zM02L6BT-E6la_wCxScLNsamzagxt5d9SAuykRKWhV1Q/exec
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwioJBkUr25IZDZzMPpNuf_e-zM02L6BT-E6la_wCxScLNsamzagxt5d9SAuykRKWhV1Q/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxz6kUfKVwIAzfFVUChhYi5EEJ9kcn3Cs3NWgI_VRDoLPKblGZ7xU3EvZeR6x0lXzCrFA/exec';
 const form = document.forms['contact-form'];
 const successAlert = document.getElementById('success-alert');
 const errorMessage = document.getElementById('error-message');

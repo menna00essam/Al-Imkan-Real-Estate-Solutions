@@ -34,15 +34,15 @@ form.addEventListener('submit', e => {
     console.log(pair); // Log each form entry
   }
 
-  fetch(scriptURL, {
-    method: 'POST',
-    mode: 'no-cors', 
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: formParams
-  })
-  .then(response => {
+ fetch(scriptURL, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Accept': 'application/json'
+  },
+  body: formParams,
+  mode: 'no-cors'
+})  .then(response => {
     if (!response.ok) {
       throw new Error('Failed to send data');
     }

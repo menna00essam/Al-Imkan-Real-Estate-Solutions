@@ -980,9 +980,9 @@ snaptr('track', 'PAGE_VIEW');
 <script src="js/wow.min.js"></script>
 <script src="js/function.js"></script>
 
-   <script>
+   <!-- <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxz6kUfKVwIAzfFVUChhYi5EEJ9kcn3Cs3NWgI_VRDoLPKblGZ7xU3EvZeR6x0lXzCrFA/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzHptcKoeS9YibDxbBGIUHDy8vX2aT1h6vrU8iul9K9ihXM9X3zxayQQJtvXuOd7E5eRg/exec';
     const form = document.forms['contact-form'];
     const successAlert = document.getElementById('success-alert');
 
@@ -1000,37 +1000,27 @@ document.addEventListener('DOMContentLoaded', function () {
        fetch(scriptURL, {
   method: 'POST',
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Accept': 'application/json'
+    'Content-Type': 'application/x-www-form-urlencoded'
   },
   body: formParams,
 })
-        .then(async response => {
-            console.log('Response received:', response);
-            
-            let data;
-            try {
-                data = await response.json(); // محاولة قراءة JSON
-            } catch (e) {
-                throw new Error('الاستجابة ليست بصيغة JSON');
-            }
-
-            if (data.result === 'success') {
-                console.log('Success:', data);
-                successAlert.style.display = 'flex';
-                form.reset();
-                setTimeout(() => {
-                    successAlert.style.display = 'none';
-                }, 3000);
-            } else {
-                console.error('Server returned error:', data.error);
-                alert('خطأ من الخادم: ' + data.error);
-            }
-        })
-        .catch(error => {
-            console.error('Error!', error.message);
-            alert('حدث خطأ أثناء إرسال البيانات: ' + error.message);
-        });
+.then(async response => {
+  if (!response.ok) throw new Error('HTTP error ' + response.status);
+  return response.json();
+})
+.then(data => {
+  if (data.result === 'success') {
+    successAlert.style.display = 'flex';
+    form.reset();
+    setTimeout(() => successAlert.style.display = 'none', 3000);
+  } else {
+    throw new Error(data.error || 'Unknown error');
+  }
+})
+.catch(error => {
+  console.error('Error!', error);
+  alert('حدث خطأ: ' + error.message);
+});
     });
 
     // التحقق من رقم الهاتف
@@ -1056,7 +1046,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-</script>
+</script> -->
 
 
 </body>

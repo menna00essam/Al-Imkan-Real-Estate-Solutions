@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 //https://script.google.com/macros/s/AKfycbwioJBkUr25IZDZzMPpNuf_e-zM02L6BT-E6la_wCxScLNsamzagxt5d9SAuykRKWhV1Q/exec
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxz6kUfKVwIAzfFVUChhYi5EEJ9kcn3Cs3NWgI_VRDoLPKblGZ7xU3EvZeR6x0lXzCrFA/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzHptcKoeS9YibDxbBGIUHDy8vX2aT1h6vrU8iul9K9ihXM9X3zxayQQJtvXuOd7E5eRg/exec';
 const form = document.forms['contact-form'];
 const successAlert = document.getElementById('success-alert');
 const errorMessage = document.getElementById('error-message');
@@ -34,30 +34,30 @@ form.addEventListener('submit', e => {
     console.log(pair); // Log each form entry
   }
 
- fetch(scriptURL, {
+fetch(scriptURL, {
   method: 'POST',
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Accept': 'application/json'
+    'Content-Type': 'application/x-www-form-urlencoded'
   },
   body: formParams,
-})  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to send data');
-    }
-    return response.json();
-  })
-  .then(result => {
+})
+.then(async response => {
+  if (!response.ok) throw new Error('HTTP error ' + response.status);
+  return response.json();
+})
+.then(data => {
+  if (data.result === 'success') {
     successAlert.style.display = 'flex';
     form.reset();
-    setTimeout(() => {
-      successAlert.style.display = 'none';
-    }, 3000);
-  })
-  .catch(error => {
-    console.error('Error details:', error); // Print error details to console
-    errorMessage.style.display = 'block'; // Show error message
-  });
+    setTimeout(() => successAlert.style.display = 'none', 3000);
+  } else {
+    throw new Error(data.error || 'Unknown error');
+  }
+})
+.catch(error => {
+  console.error('Error!', error);
+  alert('حدث خطأ: ' + error.message);
+});
 });
 
 // Phone validation

@@ -22,43 +22,43 @@ const successAlert = document.getElementById('success-alert');
 const errorMessage = document.getElementById('error-message');
 
 // Submit form event
-form.addEventListener('submit', e => {
-  e.preventDefault();
+// form.addEventListener('submit', e => {
+//   e.preventDefault();
 
-  const formData = new FormData(form);
-  const formParams = new URLSearchParams();
+//   const formData = new FormData(form);
+//   const formParams = new URLSearchParams();
 
-  // Log form data for debugging
-  for (const pair of formData.entries()) {
-    formParams.append(pair[0], pair[1]);
-    console.log(pair); // Log each form entry
-  }
+//   // Log form data for debugging
+//   for (const pair of formData.entries()) {
+//     formParams.append(pair[0], pair[1]);
+//     console.log(pair); // Log each form entry
+//   }
 
-fetch(scriptURL, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
-  },
-  body: formParams,
-})
-.then(async response => {
-  if (!response.ok) throw new Error('HTTP error ' + response.status);
-  return response.json();
-})
-.then(data => {
-  if (data.result === 'success') {
-    successAlert.style.display = 'flex';
-    form.reset();
-    setTimeout(() => successAlert.style.display = 'none', 3000);
-  } else {
-    throw new Error(data.error || 'Unknown error');
-  }
-})
-.catch(error => {
-  console.error('Error!', error);
-  alert('حدث خطأ: ' + error.message);
-});
-});
+// fetch(scriptURL, {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/x-www-form-urlencoded'
+//   },
+//   body: formParams,
+// })
+// .then(async response => {
+//   if (!response.ok) throw new Error('HTTP error ' + response.status);
+//   return response.json();
+// })
+// .then(data => {
+//   if (data.result === 'success') {
+//     successAlert.style.display = 'flex';
+//     form.reset();
+//     setTimeout(() => successAlert.style.display = 'none', 3000);
+//   } else {
+//     throw new Error(data.error || 'Unknown error');
+//   }
+// })
+// .catch(error => {
+//   console.error('Error!', error);
+//   alert('حدث خطأ: ' + error.message);
+// });
+// });
 
 // Phone validation
 document.getElementById('phone').addEventListener('input', function (e) {

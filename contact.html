@@ -233,7 +233,7 @@
                 <div class="col-lg-12">
                     <!-- Contact Form Start -->
                     <div class="contact-form">
-    <form method="POST" name="contact-form" class="wow">
+    <form method="POST" name="contact-form" action="https://script.google.com/macros/s/AKfycbzHptcKoeS9YibDxbBGIUHDy8vX2aT1h6vrU8iul9K9ihXM9X3zxayQQJtvXuOd7E5eRg/exec" class="wow">
         <div class="row">
             <div class="form-group col-md-6 mb-4">
                 <input type="text" name="Name" class="form-control" id="fname"
@@ -475,52 +475,52 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.forms['contact-form'];
     const successAlert = document.getElementById('success-alert');
 
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        console.log('Form submitted');
+//     form.addEventListener('submit', e => {
+//         e.preventDefault();
+//         console.log('Form submitted');
 
-        const formData = new FormData(form);
-        const formParams = new URLSearchParams();
+//         const formData = new FormData(form);
+//         const formParams = new URLSearchParams();
 
-        for (const pair of formData.entries()) {
-            formParams.append(pair[0], pair[1]);
-        }
+//         for (const pair of formData.entries()) {
+//             formParams.append(pair[0], pair[1]);
+//         }
 
-        fetch(scriptURL, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Accept': 'application/json'
-  },
-  body: formParams,
-})
-        .then(async response => {
-            console.log('Response received:', response);
+//         fetch(scriptURL, {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/x-www-form-urlencoded',
+//     'Accept': 'application/json'
+//   },
+//   body: formParams,
+// })
+//         .then(async response => {
+//             console.log('Response received:', response);
             
-            let data;
-            try {
-                data = await response.json(); // محاولة قراءة JSON
-            } catch (e) {
-                throw new Error('الاستجابة ليست بصيغة JSON');
-            }
+//             let data;
+//             try {
+//                 data = await response.json(); // محاولة قراءة JSON
+//             } catch (e) {
+//                 throw new Error('الاستجابة ليست بصيغة JSON');
+//             }
 
-            if (data.result === 'success') {
-                console.log('Success:', data);
-                successAlert.style.display = 'flex';
-                form.reset();
-                setTimeout(() => {
-                    successAlert.style.display = 'none';
-                }, 3000);
-            } else {
-                console.error('Server returned error:', data.error);
-                alert('خطأ من الخادم: ' + data.error);
-            }
-        })
-        .catch(error => {
-            console.error('Error!', error.message);
-            alert('حدث خطأ أثناء إرسال البيانات: ' + error.message);
-        });
-    });
+//             if (data.result === 'success') {
+//                 console.log('Success:', data);
+//                 successAlert.style.display = 'flex';
+//                 form.reset();
+//                 setTimeout(() => {
+//                     successAlert.style.display = 'none';
+//                 }, 3000);
+//             } else {
+//                 console.error('Server returned error:', data.error);
+//                 alert('خطأ من الخادم: ' + data.error);
+//             }
+//         })
+//         .catch(error => {
+//             console.error('Error!', error.message);
+//             alert('حدث خطأ أثناء إرسال البيانات: ' + error.message);
+//         });
+//     });
 
     // التحقق من رقم الهاتف
     document.getElementById('phone').addEventListener('input', function (e) {

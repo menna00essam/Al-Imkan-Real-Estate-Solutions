@@ -15,9 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
-//https://script.google.com/macros/s/AKfycbyX41kUmrn5l2sVbK318KdxvN0UwScTFv8Za4NbBvOEqfTGEwqN-56vhYkmXePFi7RIMQ/exec
-const scriptURL = 'https://script.google.com/macros/s/AKfycbyX41kUmrn5l2sVbK318KdxvN0UwScTFv8Za4NbBvOEqfTGEwqN-56vhYkmXePFi7RIMQ/exec';
+//https://script.google.com/macros/s/AKfycbwioJBkUr25IZDZzMPpNuf_e-zM02L6BT-E6la_wCxScLNsamzagxt5d9SAuykRKWhV1Q/exec
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwioJBkUr25IZDZzMPpNuf_e-zM02L6BT-E6la_wCxScLNsamzagxt5d9SAuykRKWhV1Q/exec';
 const form = document.forms['contact-form'];
 const successAlert = document.getElementById('success-alert');
 const errorMessage = document.getElementById('error-message');
@@ -37,6 +36,7 @@ form.addEventListener('submit', e => {
 
   fetch(scriptURL, {
     method: 'POST',
+    mode: 'no-cors', 
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     },

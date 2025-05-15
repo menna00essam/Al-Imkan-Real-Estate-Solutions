@@ -41,7 +41,6 @@ form.addEventListener('submit', e => {
     'Accept': 'application/json'
   },
   body: formParams,
-  mode: 'no-cors'
 })  .then(response => {
     if (!response.ok) {
       throw new Error('Failed to send data');

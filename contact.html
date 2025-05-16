@@ -470,111 +470,150 @@
 <script src="js/wow.min.js"></script>
 <script src="js/function.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    const chatWidget = document.getElementById('chatWidget');
-    const whatsappBtn = document.querySelector('.whatsapp-btn');
-    const closeChat = document.getElementById('closeChat');
+    // Contact Form Handling
+document.addEventListener('DOMContentLoaded', function() {
+    // Get form element
+    const contactForm = document.getElementById('contactForm');
+    
+    // Get success and error elements
+    const successAlert = document.getElementById('success-alert');
+    const errorMessage = document.getElementById('error-message');
+    const phoneError = document.getElementById('phone-error');
+    const closeAlertButton = document.getElementById('close-alert');
+    
+    // Close alert button event
+    if (closeAlertButton) {
+        closeAlertButton.addEventListener('click', function() {
+            successAlert.style.display = 'none';
+        });
+    }
+    
+    // Form submission event
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('fname').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const workDestination = document.getElementById('lname').value.trim();
+            const message = document.getElementById('Message').value.trim();
+            
+            // Validate form fields
+            if (!name || !phone || !workDestination) {
+                errorMessage.textContent = 'يرجى ملء جميع الحقول المطلوبة';
+                errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 5000);
+                return;
+            }
+            
+            // Validate Saudi phone number
+            if (!validateSaudiPhone(phone)) {
+                phoneError.textContent = 'يرجى إدخال رقم هاتف سعودي صحيح يبدأ بـ 05 ويتكون من 10 أرقام';
+                phoneError.style.display = 'block';
+                return;
+            } else {
+                phoneError.style.display = 'none';
+            }
+            
+            // Prepare form data
+            const formData = {
+                Name: name,
+                Phone: phone,
+                'Work-Destination': workDestination,
+                Message: message
+            };
+            
+            // Send form data
+            sendDataToGoogleSheets(formData);
+        });
+    }
+    
+    // Validate Saudi phone number function
+    function validateSaudiPhone(phone) {
+        const saudiPhoneRegex = /^05[0-9]{8}$/;
+        return saudiPhoneRegex.test(phone);
+    }
+    
+    // Send data to Google Sheets function
+    function sendDataToGoogleSheets(formData) {
+        // Google Script URL - Update this with your actual working script URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx9l1giKBK0EAmyT0gujtXbvSBYAdPQ4c9Pu3LmePNgGXWhBl0tX0fiMa2mQ5IOsC-wag/exec';
+        
+        // Change button state to loading
+        const submitButton = document.querySelector('.sub');
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.innerHTML = '<span>جاري الإرسال...</span>';
+        submitButton.disabled = true;
+        
+        // Send data using fetch API
+        fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Show success message
+            successAlert.style.display = 'block';
+            contactForm.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successAlert.style.display = 'none';
+            }, 5000);
+        })
+        .catch(error => {
+            // Show error message
+            console.error('Error:', error);
+            errorMessage.style.display = 'block';
+            
+            // Hide error message after 5 seconds
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
+        })
+        .finally(() => {
+            // Reset button state
+            submitButton.innerHTML = originalButtonText;
+            submitButton.disabled = false;
+        });
+    }
+});
 
-    if (whatsappBtn && chatWidget) {
-        whatsappBtn.addEventListener('click', () => {
+// Chat Widget Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const chatWidget = document.getElementById('chatWidget');
+    const closeChat = document.getElementById('closeChat');
+    
+    // Add a class to make the chat widget visible on page load if needed
+    // chatWidget.classList.add('visible');
+    
+    // Add WhatsApp floating button if it doesn't exist
+    if (!document.querySelector('.whatsapp-btn')) {
+        const whatsappButton = document.createElement('div');
+        whatsappButton.className = 'whatsapp-btn';
+        whatsappButton.innerHTML = '<i class="fa-brands fa-whatsapp"></i>';
+        document.body.appendChild(whatsappButton);
+        
+        whatsappButton.addEventListener('click', () => {
             chatWidget.style.display = 'block';
         });
     }
-
+    
+    // Close chat button event
     if (closeChat && chatWidget) {
         closeChat.addEventListener('click', () => {
             chatWidget.style.display = 'none';
-        });
-    }
-});
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleFormSubmit);
-    }
-});
-
-
-function handleFormSubmit(event) {
-    event.preventDefault();
-    
-    const name = document.getElementById('fname').value;
-    const phone = document.getElementById('phone').value;
-    const workDestination = document.getElementById('lname').value;
-    const message = document.getElementById('Message').value;
-    
-    if (!validateSaudiPhone(phone)) {
-        document.getElementById('phone-error').textContent = 'يرجى إدخال رقم هاتف سعودي صحيح يبدأ بـ 05 ويتكون من 10 أرقام';
-        document.getElementById('phone-error').style.display = 'block';
-        return;
-    } else {
-        document.getElementById('phone-error').style.display = 'none';
-    }
-    
-    sendDataToGoogleSheets({
-        Name: name,
-        Phone: phone,
-        'Work-Destination': workDestination,
-        Message: message
-    });
-}
-
-
-function validateSaudiPhone(phone) {
-    const saudiPhoneRegex = /^05[0-9]{8}$/;
-    return saudiPhoneRegex.test(phone);
-}
-
-function sendDataToGoogleSheets(formData) {
-    
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbx9l1giKBK0EAmyT0gujtXbvSBYAdPQ4c9Pu3LmePNgGXWhBl0tX0fiMa2mQ5IOsC-wag/exec';
-    
-    const submitButton = document.querySelector('.sub');
-    const originalButtonText = submitButton.innerHTML;
-    submitButton.innerHTML = '<span>جاري الإرسال...</span>';
-    submitButton.disabled = true;
-    
-    fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            document.getElementById('success-alert').style.display = 'block';
-            document.getElementById('contactForm').reset();
-            
-            setTimeout(() => {
-                document.getElementById('success-alert').style.display = 'none';
-            }, 5000);
-        } else {
-            throw new Error('فشل إرسال البيانات');
-        }
-    })
-    .catch(error => {
-        document.getElementById('error-message').style.display = 'block';
-        console.error('Error:', error);
-        
-        setTimeout(() => {
-            document.getElementById('error-message').style.display = 'none';
-        }, 5000);
-    })
-    .finally(() => {
-        submitButton.innerHTML = originalButtonText;
-        submitButton.disabled = false;
-    });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    const closeAlertButton = document.getElementById('close-alert');
-    if (closeAlertButton) {
-        closeAlertButton.addEventListener('click', function() {
-            document.getElementById('success-alert').style.display = 'none';
         });
     }
 });

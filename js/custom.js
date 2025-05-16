@@ -15,70 +15,94 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-//https://script.google.com/macros/s/AKfycbwioJBkUr25IZDZzMPpNuf_e-zM02L6BT-E6la_wCxScLNsamzagxt5d9SAuykRKWhV1Q/exec
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzHptcKoeS9YibDxbBGIUHDy8vX2aT1h6vrU8iul9K9ihXM9X3zxayQQJtvXuOd7E5eRg/exec';
-const form = document.forms['contact-form'];
-const successAlert = document.getElementById('success-alert');
-const errorMessage = document.getElementById('error-message');
 
-// Submit form event
-// form.addEventListener('submit', e => {
-//   e.preventDefault();
 
-//   const formData = new FormData(form);
-//   const formParams = new URLSearchParams();
 
-//   // Log form data for debugging
-//   for (const pair of formData.entries()) {
-//     formParams.append(pair[0], pair[1]);
-//     console.log(pair); // Log each form entry
-//   }
-
-// fetch(scriptURL, {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/x-www-form-urlencoded'
-//   },
-//   body: formParams,
-// })
-// .then(async response => {
-//   if (!response.ok) throw new Error('HTTP error ' + response.status);
-//   return response.json();
-// })
-// .then(data => {
-//   if (data.result === 'success') {
-//     successAlert.style.display = 'flex';
-//     form.reset();
-//     setTimeout(() => successAlert.style.display = 'none', 3000);
-//   } else {
-//     throw new Error(data.error || 'Unknown error');
-//   }
-// })
-// .catch(error => {
-//   console.error('Error!', error);
-//   alert('حدث خطأ: ' + error.message);
-// });
-// });
-
-// Phone validation
-document.getElementById('phone').addEventListener('input', function (e) {
-    let phone = e.target.value;
-    let errorDiv = document.getElementById('phone-error');
-    
-    let saudiPhonePattern = /^05[0-9]{8}$/;
-    
-    if (phone.length < 10 && phone.length > 0) {
-        errorDiv.textContent = 'يرجى إدخال رقم هاتف مكون من 10 أرقام';
-        e.target.setCustomValidity('Phone number must be 10 digits');
-    } else if (!saudiPhonePattern.test(phone) && phone.length === 10) {
-        errorDiv.textContent = 'يرجى إدخال رقم هاتف سعودي مكون من 10 أرقام يبدأ بـ 05';
-        e.target.setCustomValidity('Invalid phone number');
-    } else {
-        errorDiv.textContent = '';
-        e.target.setCustomValidity('');
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleFormSubmit);
     }
+});
 
-    if (phone.length > 10) {
-        e.target.value = phone.slice(0, 10);
+
+function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('fname').value;
+    const phone = document.getElementById('phone').value;
+    const workDestination = document.getElementById('lname').value;
+    const message = document.getElementById('Message').value;
+    
+    if (!validateSaudiPhone(phone)) {
+        document.getElementById('phone-error').textContent = 'يرجى إدخال رقم هاتف سعودي صحيح يبدأ بـ 05 ويتكون من 10 أرقام';
+        document.getElementById('phone-error').style.display = 'block';
+        return;
+    } else {
+        document.getElementById('phone-error').style.display = 'none';
+    }
+    
+    sendDataToGoogleSheets({
+        Name: name,
+        Phone: phone,
+        'Work-Destination': workDestination,
+        Message: message
+    });
+}
+
+
+function validateSaudiPhone(phone) {
+    const saudiPhoneRegex = /^05[0-9]{8}$/;
+    return saudiPhoneRegex.test(phone);
+}
+
+function sendDataToGoogleSheets(formData) {
+    
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbx9l1giKBK0EAmyT0gujtXbvSBYAdPQ4c9Pu3LmePNgGXWhBl0tX0fiMa2mQ5IOsC-wag/exec';
+    
+    const submitButton = document.querySelector('.sub');
+    const originalButtonText = submitButton.innerHTML;
+    submitButton.innerHTML = '<span>جاري الإرسال...</span>';
+    submitButton.disabled = true;
+    
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            document.getElementById('success-alert').style.display = 'block';
+            document.getElementById('contactForm').reset();
+            
+            setTimeout(() => {
+                document.getElementById('success-alert').style.display = 'none';
+            }, 5000);
+        } else {
+            throw new Error('فشل إرسال البيانات');
+        }
+    })
+    .catch(error => {
+        document.getElementById('error-message').style.display = 'block';
+        console.error('Error:', error);
+        
+        setTimeout(() => {
+            document.getElementById('error-message').style.display = 'none';
+        }, 5000);
+    })
+    .finally(() => {
+        submitButton.innerHTML = originalButtonText;
+        submitButton.disabled = false;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const closeAlertButton = document.getElementById('close-alert');
+    if (closeAlertButton) {
+        closeAlertButton.addEventListener('click', function() {
+            document.getElementById('success-alert').style.display = 'none';
+        });
     }
 });

@@ -578,7 +578,7 @@ snaptr('track', 'PAGE_VIEW');
                 <div class="col-lg-12">
                     <!-- Contact Form Start -->
                     <div class="contact-form">
-    <form method="POST" name="contact-form" action="https://script.google.com/macros/s/AKfycbzHptcKoeS9YibDxbBGIUHDy8vX2aT1h6vrU8iul9K9ihXM9X3zxayQQJtvXuOd7E5eRg/exec" class="wow">
+    <form method="POST" id="contactForm  name="contact-form" class="wow">
         <div class="row">
             <div class="form-group col-md-6 mb-4">
                 <input type="text" name="Name" class="form-control" id="fname"
@@ -980,73 +980,7 @@ snaptr('track', 'PAGE_VIEW');
 <script src="js/wow.min.js"></script>
 <script src="js/function.js"></script>
 
-   <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzHptcKoeS9YibDxbBGIUHDy8vX2aT1h6vrU8iul9K9ihXM9X3zxayQQJtvXuOd7E5eRg/exec';
-    const form = document.forms['contact-form'];
-    const successAlert = document.getElementById('success-alert');
 
-//     form.addEventListener('submit', e => {
-//         e.preventDefault();
-//         console.log('Form submitted');
-
-//         const formData = new FormData(form);
-//         const formParams = new URLSearchParams();
-
-//         for (const pair of formData.entries()) {
-//             formParams.append(pair[0], pair[1]);
-//         }
-
-//        fetch(scriptURL, {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/x-www-form-urlencoded'
-//   },
-//   body: formParams,
-// })
-// .then(async response => {
-//   if (!response.ok) throw new Error('HTTP error ' + response.status);
-//   return response.json();
-// })
-// .then(data => {
-//   if (data.result === 'success') {
-//     successAlert.style.display = 'flex';
-//     form.reset();
-//     setTimeout(() => successAlert.style.display = 'none', 3000);
-//   } else {
-//     throw new Error(data.error || 'Unknown error');
-//   }
-// })
-// .catch(error => {
-//   console.error('Error!', error);
-//   alert('حدث خطأ: ' + error.message);
-// });
-//     });
-
-    // التحقق من رقم الهاتف
-    document.getElementById('phone').addEventListener('input', function (e) {
-        let phone = e.target.value;
-        let errorDiv = document.getElementById('phone-error');
-
-        let saudiPhonePattern = /^05[0-9]{8}$/;
-
-        if (phone.length < 10 && phone.length > 0) {
-            errorDiv.textContent = 'يرجى إدخال رقم هاتف مكون من 10 أرقام';
-            e.target.setCustomValidity('Phone number must be 10 digits');
-        } else if (!saudiPhonePattern.test(phone) && phone.length === 10) {
-            errorDiv.textContent = 'يرجى إدخال رقم هاتف سعودي مكون من 10 أرقام يبدأ بـ 05';
-            e.target.setCustomValidity('Invalid phone number');
-        } else {
-            errorDiv.textContent = '';
-            e.target.setCustomValidity('');
-        }
-
-        if (phone.length > 10) {
-            e.target.value = phone.slice(0, 10);
-        }
-    });
-});
-</script>
 
 
 </body>

@@ -229,54 +229,81 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Contact Form Start -->
-                    <div class="contact-form">
-    <form method="POST"  id="contactForm" name="contact-form" class="wow">
+           <div class="row">
+  <div class="col-lg-12">
+    <!-- Contact Form Start -->
+    <div class="contact-form">
+      <form method="POST" id="contactForm" name="contact-form" class="wow">
         <div class="row">
-            <div class="form-group col-md-6 mb-4">
-                <input type="text" name="Name" class="form-control" id="fname"
-                    placeholder="الاسم كاملاً" required>
-                <div class="help-block with-errors"></div>
-            </div>
+          <div class="form-group col-md-6 mb-4">
+            <input
+              type="text"
+              name="Name"
+              class="form-control"
+              id="fname"
+              placeholder="الاسم كاملاً"
+              required
+            />
+            <div class="help-block with-errors"></div>
+          </div>
 
-            <div class="form-group col-md-6 mb-4">
-                <input type="number" name="Phone" class="form-control" id="phone"
-                    placeholder="رقم الهاتف" pattern="05[0-9]{8}" maxlength="10" required>
-                <div class="help-block with-errors" id="phone-error"></div>
-            </div>
+          <div class="form-group col-md-6 mb-4">
+            <input
+              type="number"
+              name="Phone"
+              class="form-control"
+              id="phone"
+              placeholder="رقم الهاتف"
+              pattern="05[0-9]{8}"
+              maxlength="10"
+              required
+            />
+            <div class="help-block with-errors" id="phone-error"></div>
+          </div>
 
-            <div class="form-group col-md-6 mb-4">
-                <input type="text" name="Work-Destination" class="form-control" id="lname"
-                    placeholder="جهة العمل" required>
-                <div class="help-block with-errors"></div>
-            </div>
+          <div class="form-group col-md-6 mb-4">
+            <input
+              type="text"
+              name="Work-Destination"
+              class="form-control"
+              id="lname"
+              placeholder="جهة العمل"
+              required
+            />
+            <div class="help-block with-errors"></div>
+          </div>
 
-            <div class="form-group col-md-12 mb-5">
-                <textarea name="Message" class="form-control" id="Message" rows="4"
-                    placeholder="اكتب استفسارك هنا..."></textarea>
-            </div>
+          <div class="form-group col-md-12 mb-5">
+            <textarea
+              name="Message"
+              class="form-control"
+              id="Message"
+              rows="4"
+              placeholder="اكتب استفسارك هنا..."
+            ></textarea>
+          </div>
 
-            <div class="col-md-12">
-                <button type="submit" class="btn-default sub"><span>أرسل طلب</span></button>
-            </div>
+          <div class="col-md-12">
+            <button type="submit" class="btn-default sub">
+              <span>أرسل طلب</span>
+            </button>
+          </div>
         </div>
-    </form>
-    
+      </form>
+    </div>
+    <div id="success-alert" class="status-message status-success">تم الإرسال بنجاح</div>
+  <div id="error-message" class="status-message status-error">حدث خطأ أثناء الإرسال</div>
+  <div id="phone-error" class="status-message status-error"></div>
+
+    <!-- Success Alert -->
+    <div
+   
+ 
+
+  
+
+  </div>
 </div>
-
-<!-- Success Alert -->
-<div id="success-alert" style="display: none; background-color: green; color: white; padding: 10px; text-align: center;">
-    <p>تم إرسال الرسالة بنجاح!</p>
-    <button id="close-alert" style="background-color: red; color: white; padding: 5px 10px; border: none;">إغلاق</button>
-</div>
-
-<p id="error-message" style="color: red; display: none;">حدث خطأ أثناء إرسال البيانات. يرجى المحاولة مرة أخرى.</p>
-
-                    <!-- Contact Form End -->
-                </div>
-            </div>
         </div>
     </div>
     <!-- Contact Us Form Section End -->
@@ -450,7 +477,7 @@
     </footer>
     <!-- Footer End --> 
 
-<script src="js/custom.js"></script>
+<!-- <script src="js/custom.js"></script> -->
 <script src="js/function.js" ></script>
 <script src="js/jquery-3.7.1.min.js"></script>
 <script src="js/validator.min.js"></script>
@@ -470,155 +497,130 @@
 <script src="js/wow.min.js"></script>
 <script src="js/function.js"></script>
 <script>
-    // Contact Form Handling
-document.addEventListener('DOMContentLoaded', function() {
-    // Get form element
-    const contactForm = document.getElementById('contactForm');
-    
-    // Get success and error elements
-    const successAlert = document.getElementById('success-alert');
-    const errorMessage = document.getElementById('error-message');
-    const phoneError = document.getElementById('phone-error');
-    const closeAlertButton = document.getElementById('close-alert');
-    
-    // Close alert button event
-    if (closeAlertButton) {
-        closeAlertButton.addEventListener('click', function() {
-            successAlert.style.display = 'none';
-        });
-    }
-    
-    // Form submission event
+  document.addEventListener("DOMContentLoaded", function () {
+    const contactForm = document.getElementById("contactForm");
+    const successAlert = document.getElementById("success-alert");
+    const errorMessage = document.getElementById("error-message");
+    const phoneError = document.getElementById("phone-error");
+
     if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('fname').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const workDestination = document.getElementById('lname').value.trim();
-            const message = document.getElementById('Message').value.trim();
-            
-            // Validate form fields
-            if (!name || !phone || !workDestination) {
-                errorMessage.textContent = 'يرجى ملء جميع الحقول المطلوبة';
-                errorMessage.style.display = 'block';
-                setTimeout(() => {
-                    errorMessage.style.display = 'none';
-                }, 5000);
-                return;
-            }
-            
-            // Validate Saudi phone number
-            if (!validateSaudiPhone(phone)) {
-                phoneError.textContent = 'يرجى إدخال رقم هاتف سعودي صحيح يبدأ بـ 05 ويتكون من 10 أرقام';
-                phoneError.style.display = 'block';
-                return;
-            } else {
-                phoneError.style.display = 'none';
-            }
-            
-            // Prepare form data
-            const formData = {
-                Name: name,
-                Phone: phone,
-                'Work-Destination': workDestination,
-                Message: message
-            };
-            
-            // Send form data
-            sendDataToGoogleSheets(formData);
-        });
+      contactForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("fname").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const workDestination = document.getElementById("lname").value.trim();
+        const message = document.getElementById("Message").value.trim();
+
+        // Reset messages
+        successAlert.style.display = "none";
+        errorMessage.style.display = "none";
+        phoneError.style.display = "none";
+
+        if (!name || !phone || !workDestination) {
+          errorMessage.textContent = "يرجى ملء جميع الحقول المطلوبة";
+          errorMessage.style.display = "block";
+          hideMessagesLater();
+          return;
+        }
+
+        if (!validateSaudiPhone(phone)) {
+          phoneError.textContent = " يرجى إدخال رقم هاتف سعودي صحيح يبدأ بـ 05 ويتكون من 10 أرقام";
+          phoneError.style.display = "block";
+          hideMessagesLater();
+          return;
+        }
+
+        const formData = {
+          Name: name,
+          Phone: phone,
+          "Work-Destination": workDestination,
+          Message: message,
+        };
+
+        sendDataToGoogleSheets(formData);
+      });
     }
-    
-    // Validate Saudi phone number function
+
     function validateSaudiPhone(phone) {
-        const saudiPhoneRegex = /^05[0-9]{8}$/;
-        return saudiPhoneRegex.test(phone);
+      const saudiPhoneRegex = /^05[0-9]{8}$/;
+      return saudiPhoneRegex.test(phone);
     }
-    
-    // Send data to Google Sheets function
-    function sendDataToGoogleSheets(formData) {
-        // Google Script URL - Update this with your actual working script URL
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbx9l1giKBK0EAmyT0gujtXbvSBYAdPQ4c9Pu3LmePNgGXWhBl0tX0fiMa2mQ5IOsC-wag/exec';
-        
-        // Change button state to loading
-        const submitButton = document.querySelector('.sub');
-        const originalButtonText = submitButton.innerHTML;
-        submitButton.innerHTML = '<span>جاري الإرسال...</span>';
-        submitButton.disabled = true;
-        
-        // Send data using fetch API
-        fetch(scriptURL, {
-            method: 'POST',
-            body: JSON.stringify(formData),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Show success message
-            successAlert.style.display = 'block';
-            contactForm.reset();
-            
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-                successAlert.style.display = 'none';
-            }, 5000);
-        })
-        .catch(error => {
-            // Show error message
-            console.error('Error:', error);
-            errorMessage.style.display = 'block';
-            
-            // Hide error message after 5 seconds
-            setTimeout(() => {
-                errorMessage.style.display = 'none';
-            }, 5000);
-        })
-        .finally(() => {
-            // Reset button state
-            submitButton.innerHTML = originalButtonText;
-            submitButton.disabled = false;
-        });
-    }
-});
 
-// Chat Widget Functionality
-document.addEventListener('DOMContentLoaded', () => {
-    const chatWidget = document.getElementById('chatWidget');
-    const closeChat = document.getElementById('closeChat');
-    
-    // Add a class to make the chat widget visible on page load if needed
-    // chatWidget.classList.add('visible');
-    
-    // Add WhatsApp floating button if it doesn't exist
-    if (!document.querySelector('.whatsapp-btn')) {
-        const whatsappButton = document.createElement('div');
-        whatsappButton.className = 'whatsapp-btn';
-        whatsappButton.innerHTML = '<i class="fa-brands fa-whatsapp"></i>';
-        document.body.appendChild(whatsappButton);
-        
-        whatsappButton.addEventListener('click', () => {
-            chatWidget.style.display = 'block';
-        });
+    function hideMessagesLater() {
+      setTimeout(() => {
+        successAlert.style.display = "none";
+        errorMessage.style.display = "none";
+        phoneError.style.display = "none";
+      }, 5000);
     }
-    
-    // Close chat button event
-    if (closeChat && chatWidget) {
-        closeChat.addEventListener('click', () => {
-            chatWidget.style.display = 'none';
-        });
-    }
-});
 
+  function sendDataToGoogleSheets(formData) {
+  const proxyUrl = "https://menna.lovestoblog.com/proxy.php"; 
+  const scriptURL = "https://script.google.com/macros/s/AKfycbx9l1giKBK0EAmyT0gujtXbvSBYAdPQ4c9Pu3LmePNgGXWhBl0tX0fiMa2mQ5IOsC-wag/exec";
+
+  const submitButton = document.querySelector(".sub");
+  const originalButtonText = submitButton.innerHTML;
+  submitButton.innerHTML = "<span>جاري الإرسال...</span>";
+  submitButton.disabled = true;
+
+  fetch(proxyUrl + "?url=" + encodeURIComponent(scriptURL), {
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      successAlert.textContent = "✅ تم الإرسال بنجاح";
+      successAlert.style.display = "block";
+      contactForm.reset();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      errorMessage.textContent = " حدث خطأ أثناء الإرسال";
+      errorMessage.style.display = "block";
+    })
+    .finally(() => {
+      submitButton.innerHTML = originalButtonText;
+      submitButton.disabled = false;
+      hideMessagesLater();
+    });
+}
+
+
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 </script>
+
 
 
 

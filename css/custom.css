@@ -7237,3 +7237,18 @@ body:has(.offcanvas){
                 font-size: 18px;
             }
         }
+
+
+	.status-message {
+  font-size: 14px;
+  margin-top: 10px;
+  display: none;
+}
+
+.status-success {
+  color: green;
+}
+
+.status-error {
+  color: red;
+}

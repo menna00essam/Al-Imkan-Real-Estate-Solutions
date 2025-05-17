@@ -155,7 +155,7 @@ snaptr('track', 'PAGE_VIEW');
                                 <li class="nav-item submenu"><a class="nav-link" href="#">الرئيسية</a> </li>
                                 <li class="nav-item"><a class="nav-link" href="#about-us"> نبذة عنا</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#services">خدماتنا</a></li>
-                                <li class="nav-item submenu"><a class="nav-link" href="#work">تقديم طلب</a></li>
+                                <li class="nav-item submenu"><a class="nav-link" href="contact.html">تقديم طلب</a></li>
                                 <li class="nav-item"><a class="nav-link" href="contact.html">اتصل بنا</a></li>
                             </ul>
                         </div>
@@ -550,33 +550,6 @@ snaptr('track', 'PAGE_VIEW');
         </div>
     </div>
     <!-- Contact Us Form Section Start -->
-    <div class="contact-us-form" id="work">
-        <div class="container">
-            <div class="row section-row align-items-center">
-                <div class="col-lg-7">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h3 class="wow fadeInUp">تقديم طلب </h3>
-                        <h2 class="text-anime-style-2" data-cursor="-opaque">تقدم
-                            <span>بطلبك</span> الآن
-                        </h2>
-                    </div>
-                    <!-- Section Title End -->
-                </div>
-
-                <div class="col-lg-5">
-                    <!-- Section Title Content Start -->
-                    <div class="section-title-content">
-                        <p class="wow fadeInUp" data-wow-delay="0.2s"> قدّم طلبك الآن للحصول على التمويل العقاري أو
-                            الاستشارة المناسبة، وسيقوم فريقنا بالتواصل معك لدراسة حالتك وتوجيهك للحل الأفضل.</p>
-                    </div>
-                    <!-- Section Title Content End -->
-                </div>
-            </div>
-
-                   <div class="row">
-  <div class="col-lg-12">
-    <!-- Contact Form Start -->
     <div class="contact-form">
       <form method="POST" id="contactForm" name="contact-form" class="wow">
         <div class="row">
@@ -635,16 +608,6 @@ snaptr('track', 'PAGE_VIEW');
           </div>
         </div>
       </form>
-    </div>
-    <div id="success-alert" class="status-message status-success">تم الإرسال بنجاح</div>
-  <div id="error-message" class="status-message status-error">حدث خطأ أثناء الإرسال</div>
-  <div id="phone-error" class="status-message status-error"></div>
-
-    <!-- Success Alert -->
-    
-        </div>
-    </div>
-        </div>
     </div>
 
     <div class="our-testimonial">
@@ -874,7 +837,7 @@ snaptr('track', 'PAGE_VIEW');
                                 <li><a href="index.html">الرئيسية</a></li>
                                 <li><a href="#about-us"> نبذة عنا</a></li>
                                 <li><a href="#services">خدماتنا</a></li>
-                                <li><a href="#work">تقديم طلب</a></li>
+                                <li><a href="contact.html">تقديم طلب</a></li>
                             </ul>
                         </div>
                         <!-- Footer Links end -->
@@ -887,7 +850,7 @@ snaptr('track', 'PAGE_VIEW');
                                 <li><a href="help.html">مساعدة</a></li>
                                 <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
                                 <li><a href="terms.html">الشروط والأحكام</a></li>
-                                <li><a href="contact.html">أتصال</a></li>
+                                <li><a href="contact.html">اتصال</a></li>
                             </ul>
                         </div>
                         <!-- Footer Contact Details End -->
@@ -1059,17 +1022,15 @@ snaptr('track', 'PAGE_VIEW');
         phoneError.style.display = "none";
       }, 5000);
     }
-
-  function sendDataToGoogleSheets(formData) {
-  const proxyUrl = "https://menna.lovestoblog.com/proxy.php"; 
-  const scriptURL = "https://script.google.com/macros/s/AKfycbx9l1giKBK0EAmyT0gujtXbvSBYAdPQ4c9Pu3LmePNgGXWhBl0tX0fiMa2mQ5IOsC-wag/exec";
+function sendDataToGoogleSheets(formData) {
+  const proxyUrl = "https://srv1690-files.hstgr.io/b1fb99f2fbd8519c/files/public_html/proxy.php"; 
 
   const submitButton = document.querySelector(".sub");
   const originalButtonText = submitButton.innerHTML;
   submitButton.innerHTML = "<span>جاري الإرسال...</span>";
   submitButton.disabled = true;
 
-  fetch(proxyUrl + "?url=" + encodeURIComponent(scriptURL), {
+  fetch(proxyUrl, {  // فقط البروكسي، بدون إضافة رابط Google Script هنا
     method: "POST",
     body: JSON.stringify(formData),
     headers: {
@@ -1083,7 +1044,7 @@ snaptr('track', 'PAGE_VIEW');
       return response.json();
     })
     .then((data) => {
-      successAlert.textContent = "تم الإرسال بنجاح";
+      successAlert.textContent = "✅ تم الإرسال بنجاح";
       successAlert.style.display = "block";
       contactForm.reset();
     })

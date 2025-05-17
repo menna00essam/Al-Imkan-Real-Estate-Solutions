@@ -109,7 +109,7 @@
                                 <li class="nav-item submenu"><a class="nav-link" href="index.html">الرئيسية</a> </li>
                                 <li class="nav-item"><a class="nav-link" href="index.html#about-us"> نبذة عنا</a></li>
                                 <li class="nav-item"><a class="nav-link" href="services.html">خدماتنا</a></li>
-                                <li class="nav-item submenu"><a class="nav-link" href="index.html">تقديم طلب</a></li>
+                                <li class="nav-item submenu"><a class="nav-link" href="contact.html">تقديم طلب</a></li>
                                 <li class="nav-item"><a class="nav-link" href="contact.html">اتصل بنا</a></li>
                             </ul>
                         </div>
@@ -369,7 +369,7 @@
                                 <li><a href="index.html">الرئيسية</a></li>
                                 <li><a href="index.html#about-us"> نبذة عنا</a></li>
                                 <li><a href="index.html#services">خدماتنا</a></li>
-                                <li><a href="index.html#work">تقديم طلب</a></li>
+                                <li><a href="contact.html">تقديم طلب</a></li>
                             </ul>
                         </div>
                         <!-- Footer Links end -->
@@ -382,7 +382,7 @@
                                 <li><a href="help.html">مساعدة</a></li>
                                 <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
                                 <li><a href="terms.html">الشروط والأحكام</a></li>
-                                <li><a href="contact.html">أتصال</a></li>
+                                <li><a href="contact.html">اتصال</a></li>
                             </ul>
                         </div>
                         <!-- Footer Contact Details End -->
@@ -424,7 +424,7 @@
                                         <i class="fa-solid fa-phone-volume"></i>
                                     </div>
                                     <div class="footer-contact-item-content">
-                                        <h3><a href="tel:+20112004694">0112004694</a></h3>
+                                        <h3><a href="tel:0090112004694">0112004694</a></h3>
                                     </div>
                                 </div>
                                 <!-- Footer Contact Item End -->
@@ -525,7 +525,7 @@
         }
 
         if (!validateSaudiPhone(phone)) {
-          phoneError.textContent = "يرجى إدخال رقم هاتف سعودي صحيح يبدأ بـ 05 ويتكون من 10 أرقام";
+          phoneError.textContent = " يرجى إدخال رقم هاتف سعودي صحيح يبدأ بـ 05 ويتكون من 10 أرقام";
           phoneError.style.display = "block";
           hideMessagesLater();
           return;
@@ -555,32 +555,71 @@
       }, 5000);
     }
 
-    function sendDataToGoogleSheets(formData) {
-      fetch('https://script.google.com/macros/s/AKfycbx9l1giKBK0EAmyT0gujtXbvSBYAdPQ4c9Pu3LmePNgGXWhBl0tX0fiMa2mQ5IOsC-wag/exec', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('تم الإرسال بنجاح:', data);
-        successAlert.textContent = "تم إرسال البيانات بنجاح 🎉";
-        successAlert.style.display = "block";
-        contactForm.reset();
-        hideMessagesLater();
-      })
-      .catch(error => {
-        console.error('حدث خطأ أثناء الإرسال:', error);
-        errorMessage.textContent = "حدث خطأ أثناء الإرسال";
-        errorMessage.style.display = "block";
-        hideMessagesLater();
-      });
-    }
-  });
-</script>
 
+function sendDataToGoogleSheets(formData) {
+  const proxyUrl = "https://srv1690-files.hstgr.io/b1fb99f2fbd8519c/files/public_html/proxy.php"; 
+
+  const submitButton = document.querySelector(".sub");
+  const originalButtonText = submitButton.innerHTML;
+  submitButton.innerHTML = "<span>جاري الإرسال...</span>";
+  submitButton.disabled = true;
+
+  fetch(proxyUrl, {  // فقط البروكسي، بدون إضافة رابط Google Script هنا
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      successAlert.textContent = "✅ تم الإرسال بنجاح";
+      successAlert.style.display = "block";
+      contactForm.reset();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      errorMessage.textContent = " حدث خطأ أثناء الإرسال";
+      errorMessage.style.display = "block";
+    })
+    .finally(() => {
+      submitButton.innerHTML = originalButtonText;
+      submitButton.disabled = false;
+      hideMessagesLater();
+    });
+}
+
+
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</script>
 
 
 

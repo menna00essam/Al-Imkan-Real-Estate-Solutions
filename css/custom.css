@@ -6904,17 +6904,17 @@ body:has(.offcanvas){
     color: #a5852e;
     font-size: 22px;
     margin-bottom: 15px;
-    display: flex;
+    /* display: flex; */
     align-items: center;
     gap: 15px;
 }
 
-.section-title::before {
+/* .section-title::before {
     content: "•";
     color: #a5852e;
     font-size: 50px;
     margin-left: 10px;
-}
+} */
 
 .section-text {
     color: #d0d0d0;

@@ -85,6 +85,15 @@ snaptr('init', '5cf1584d-8b7d-4203-a140-08c2c5350386', {
 snaptr('track', 'PAGE_VIEW');
 
 </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3ZPD65GF7Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3ZPD65GF7Q');
+</script>
 <!-- End Snap Pixel Code -->
 </head>
 
@@ -443,7 +452,7 @@ snaptr('track', 'PAGE_VIEW');
                                 <img  src="images/icon-service-7.webp"loading="lazy" alt="icon-service">
                             </div>
                             <div class="service-item-content">
-                                <h3>خدمة الائتمان
+                                <h3>توحيد الالتزامات
                                 </h3>
                                 <p>تحسين الوضع الائتماني للعميل في سمة بما يتوافق مع متطلبات التمويل العقاري.</p>
                                 <a href="services.html" class="readmore-btn">أعرف المزيد</a>
@@ -550,6 +559,9 @@ snaptr('track', 'PAGE_VIEW');
         </div>
     </div>
     <!-- Contact Us Form Section Start -->
+  <div class="row">
+  <div class="col-lg-12">
+    <!-- Contact Form Start -->
     <div class="contact-form">
       <form method="POST" id="contactForm" name="contact-form" class="wow">
         <div class="row">
@@ -609,7 +621,21 @@ snaptr('track', 'PAGE_VIEW');
         </div>
       </form>
     </div>
+    <div id="success-alert" class="status-message status-success">تم الإرسال بنجاح</div>
+  <div id="error-message" class="status-message status-error">حدث خطأ أثناء الإرسال</div>
+  <div id="phone-error" class="status-message status-error"></div>
 
+    <!-- Success Alert -->
+    <div
+   
+ 
+
+  
+
+  </div>
+</div>
+        </div>
+    </div>
     <div class="our-testimonial">
         <div class="container">
             <div class="row section-row align-items-center">
@@ -626,7 +652,7 @@ snaptr('track', 'PAGE_VIEW');
                 <div class="col-lg-4">
                     <!-- Section Button Start -->
                     <div class="section-btn testimonial wow fadeInUp" data-wow-delay="0.2s">
-                        <a href="#" class="btn-default">تواصل معنا</a>
+                        <a href="contact.html" class="btn-default">تواصل معنا</a>
                     </div>
                     <!-- Section Button End -->
                 </div>
@@ -654,7 +680,7 @@ snaptr('track', 'PAGE_VIEW');
                                             <div class="testimonial-author">
                                                 <div class="author-image">
                                                     <figure class="image-anime">
-                                                        <img   src="images/Fahad.webp"loading="lazy" alt="Fahad">
+                                                        <img   src="images/Fahad.svg"loading="lazy" alt="Fahad">
                                                     </figure>
                                                 </div>
                                                 <div class="author-content">
@@ -850,7 +876,7 @@ snaptr('track', 'PAGE_VIEW');
                                 <li><a href="help.html">مساعدة</a></li>
                                 <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
                                 <li><a href="terms.html">الشروط والأحكام</a></li>
-                                <li><a href="contact.html">اتصال</a></li>
+                                <li><a href="contact.html">اتصل بنا</a></li>
                             </ul>
                         </div>
                         <!-- Footer Contact Details End -->
@@ -867,7 +893,7 @@ snaptr('track', 'PAGE_VIEW');
                                 <li><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/966112004694"
                                         target="_blank">966112004694</a></li>
                                 <li><i class="fa-solid fa-envelope"></i><a
-                                        href="mailto:info@halulalemkan.com">info@halulalemkan.com</a></li>
+                                        href="mailto:halloulalamkanrealestate@gmail.com">halloulalamkanrealestate@gmail.com</a></li>
                                 <li><i class="fa-solid fa-newspaper"></i> <a href="#">رقم الترخيص : 120002512</a></li>
                             </ul>
                         </div>
@@ -892,7 +918,7 @@ snaptr('track', 'PAGE_VIEW');
                                         <i class="fa-solid fa-phone-volume"></i>
                                     </div>
                                     <div class="footer-contact-item-content">
-                                        <h3><a href="tel:+20112004694">0112004694</a></h3>
+                                        <h3><a href="tel:009660112004694">0112004694</a></h3>
                                     </div>
                                 </div>
                                 <!-- Footer Contact Item End -->
@@ -902,7 +928,7 @@ snaptr('track', 'PAGE_VIEW');
                                         <i class="fa-solid fa-envelope"></i>
                                     </div>
                                     <div class="footer-contact-item-content">
-                                        <h3><a href="mailto:info@halulalemkan.com">info@halulalemkan.com</a></h3>
+                                        <h3><a href="mailto:halloulalamkanrealestate@gmail.com">halloulalamkanrealestate@gmail.com</a></h3>
                                     </div>
                                 </div>
                                 <!-- Footer Contact Item End -->
@@ -1022,8 +1048,10 @@ snaptr('track', 'PAGE_VIEW');
         phoneError.style.display = "none";
       }, 5000);
     }
+
+
 function sendDataToGoogleSheets(formData) {
-  const proxyUrl = "https://srv1690-files.hstgr.io/b1fb99f2fbd8519c/files/public_html/proxy.php"; 
+  const proxyUrl = "https://halulalemkan.com/api/bridge.php"; 
 
   const submitButton = document.querySelector(".sub");
   const originalButtonText = submitButton.innerHTML;
@@ -1063,7 +1091,28 @@ function sendDataToGoogleSheets(formData) {
 
 
   });
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 </script>
 
 

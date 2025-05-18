@@ -66,6 +66,15 @@
         <link rel="stylesheet" href="css/mousecursor.css">
         <!-- Main Custom Css -->
         <link href="css/custom.css" rel="stylesheet" media="screen">
+        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3ZPD65GF7Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3ZPD65GF7Q');
+</script>
     </head>
     <meta name="google-site-verification" content="gDhubvb5JL7gFOELwZ7OND9XObHiCF64Cr3IyXLvCNU" />
 <body>
@@ -143,7 +152,7 @@
                 <div class="col-lg-12">
                     <!-- Page Header Box Start -->
                     <div class="page-header-box">
-                        <img src="images/phone.svg" width="50" height="50" alt="icon">
+                        <img src="images/phone.svg" width="90" height="90" alt="icon">
                         <h1 class="text-anime-style-2" data-cursor="-opaque">تواصل  <span>معنا</span></h1>
                     </div>
                     <!-- Page Header Box End -->
@@ -208,26 +217,29 @@
     <!-- Contact Us Form Section Start -->
     <div class="contact-us-form">
         <div class="container">
-            <div class="row section-row align-items-center">
-                <div class="col-lg-7">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h3 class="wow fadeInUp">تواصل معنا</h3>
-                        <h2 class="text-anime-style-2" data-cursor="-opaque">تواصل  
-                            <span>معنا</span> الآن</h2>
-                    </div>
-                    <!-- Section Title End -->
-                </div>
+           <div class="row section-row align-items-center">
+    <div class="col-lg-7">
+        <!-- Section Title Start -->
+        <div class="section-title">
+            <h3 class="wow fadeInUp">تواصل معنا</h3>
+            <h2 class="text-anime-style-2" data-cursor="-opaque">
+                نحن هنا <span>لخدمتك</span>
+            </h2>
+        </div>
+        <!-- Section Title End -->
+    </div>
 
-                <div class="col-lg-5">
-                    <!-- Section Title Content Start -->
-                    <div class="section-title-content">
-                        <p class="wow fadeInUp" data-wow-delay="0.2s">من اجل تقديم خدماتنا وايجاد الحل المناسب   طوال أيام العمل الرسمية اترك رسالتك وسنتواصل معك أو اتصل بنا عبر القنوات المتاحة
-.                        </p>
-                   </div>  
-                    <!-- Section Title Content End -->
-                </div>
-            </div>
+    <div class="col-lg-5">
+        <!-- Section Title Content Start -->
+        <div class="section-title-content">
+            <p class="wow fadeInUp" data-wow-delay="0.2s">
+                يمكنك التواصل معنا في أي وقت خلال أيام العمل الرسمية. اترك رسالتك وسنرد عليك في أقرب وقت، أو تواصل معنا عبر القنوات المتاحة.
+            </p>
+        </div>  
+        <!-- Section Title Content End -->
+    </div>
+</div>
+
 
            <div class="row">
   <div class="col-lg-12">
@@ -382,7 +394,7 @@
                                 <li><a href="help.html">مساعدة</a></li>
                                 <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
                                 <li><a href="terms.html">الشروط والأحكام</a></li>
-                                <li><a href="contact.html">اتصال</a></li>
+                                <li><a href="contact.html">اتصل بنا</a></li>
                             </ul>
                         </div>
                         <!-- Footer Contact Details End -->
@@ -399,7 +411,7 @@
                                 <li><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/966112004694"
                                         target="_blank">966112004694</a></li>
                                 <li><i class="fa-solid fa-envelope"></i><a
-                                        href="mailto:info@halulalemkan.com">info@halulalemkan.com</a></li>
+                                        href="mailto:halloulalamkanrealestate@gmail.com">halloulalamkanrealestate@gmail.com</a></li>
                                 <li><i class="fa-solid fa-newspaper"></i> <a href="#">رقم الترخيص : 120002512</a></li>
                             </ul>
                         </div>
@@ -424,7 +436,7 @@
                                         <i class="fa-solid fa-phone-volume"></i>
                                     </div>
                                     <div class="footer-contact-item-content">
-                                        <h3><a href="tel:0090112004694">0112004694</a></h3>
+                                        <h3><a href="tel:009660112004694">0112004694</a></h3>
                                     </div>
                                 </div>
                                 <!-- Footer Contact Item End -->
@@ -434,7 +446,7 @@
                                         <i class="fa-solid fa-envelope"></i>
                                     </div>
                                     <div class="footer-contact-item-content">
-                                        <h3><a href="mailto:info@halulalemkan.com">info@halulalemkan.com</a></h3>
+                                        <h3><a href="mailto:halloulalamkanrealestate@gmail.com">halloulalamkanrealestate@gmail.com</a></h3>
                                     </div>
                                 </div>
                                 <!-- Footer Contact Item End -->
@@ -557,7 +569,7 @@
 
 
 function sendDataToGoogleSheets(formData) {
-  const proxyUrl = "https://srv1690-files.hstgr.io/b1fb99f2fbd8519c/files/public_html/proxy.php"; 
+  const proxyUrl = "https://halulalemkan.com/api/bridge.php"; 
 
   const submitButton = document.querySelector(".sub");
   const originalButtonText = submitButton.innerHTML;
